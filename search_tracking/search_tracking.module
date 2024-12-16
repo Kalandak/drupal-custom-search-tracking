@@ -1,0 +1,59 @@
+<?php
+
+/**
+ * @file
+ * Provides functionality for FCSO Search Tracking.
+ */
+
+/**
+ * Implements hook_page_attachments().
+ */
+function search_tracking_page_attachments(array &$attachments) {
+  // Attach the CSS library to every page on the site.
+  $attachments['#attached']['library'][] = 'search_tracking/form-api-data';
+}
+
+/**
+ * Implements hook_page_preprocess().
+ */
+function search_tracking_preprocess_page(&$variables) {
+  // Create the base url variable.
+  global $base_url;
+  $variables['#attached']['drupalSettings']['search_form']['base_url'] = $base_url;
+  // Create config values for form fields.
+  $configFactory = \Drupal::service('config.factory');
+  $config = $configFactory->getEditable('search_tracking.settings');
+  $attr_type = $config->get('attr_type');
+  if ($attr_type == '1') {
+    if ($config->get('form_attr_id') != NULL && $config->get('input_name') != NULL) {
+      $variables['#attached']['drupalSettings']['search_form']['form_attr_id'] = $config->get('form_attr_id');
+      $variables['#attached']['drupalSettings']['search_form']['input_name'] = $config->get('input_name');
+      $variables['#attached']['drupalSettings']['search_form']['facet_name'] = $config->get('facet_name');
+      $variables['#attached']['drupalSettings']['search_form']['facet_language_name'] = $config->get('facet_language_name');
+    }
+  }
+  elseif ($attr_type == '2') {
+    if ($config->get('form_class') != NULL && $config->get('input_name') != NULL) {
+      $variables['#attached']['drupalSettings']['search_form']['form_class'] = $config->get('form_class');
+      $variables['#attached']['drupalSettings']['search_form']['input_name'] = $config->get('input_name');
+      $variables['#attached']['drupalSettings']['search_form']['facet_name'] = $config->get('facet_name');
+      $variables['#attached']['drupalSettings']['search_form']['facet_language_name'] = $config->get('facet_language_name');
+    }
+  }
+  elseif ($attr_type == '3') {
+    if ($config->get('url_param') != NULL) {
+      $variables['#attached']['drupalSettings']['search_form']['url_param'] = $config->get('url_param');
+    }
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function search_tracking_theme($existing, $type, $theme, $path) {
+  return [
+    'page__admin__config__search__search_tracking' => [
+      'base hook' => 'page',
+    ],
+  ];
+}

@@ -1,0 +1,55 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the search_tracking module.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function search_tracking_schema() {
+  $schema['search_tracking'] = [
+    'description' => 'A table to store simple data',
+    'fields' => [
+      'id' => [
+        'description' => 'Holds the id value',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'search' => [
+        'description' => 'Holds the keyword value',
+        'type' => 'varchar',
+        'length' => '100',
+        'not null' => TRUE,
+      ],
+      'business' => [
+        'description' => 'Holds the line of business value',
+        'type' => 'varchar',
+        'length' => '100',
+        'not null' => FALSE,
+      ],
+      'language_facet' => [
+        'description' => 'Holds the language value',
+        'type' => 'varchar',
+        'length' => '100',
+        'not null' => FALSE,
+      ],
+      'ip_address' => [
+        'description' => 'Holds the ip address',
+        'type' => 'varchar',
+        'length' => '100',
+        'not null' => TRUE,
+      ],
+      'created_on' => [
+        'description' => 'Holds the created time value',
+        'mysql_type' => 'int',
+        'length' => '100',
+        'not null' => FALSE,
+      ],
+    ],
+    'primary key' => ['id'],
+  ];
+  return $schema;
+}

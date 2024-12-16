@@ -1,0 +1,11 @@
+search_tracking.configmenu:
+  title: "Search Tracking"
+  route_name: search_tracking.searchTrackingConfig
+  description: 'Search tracking form configuration'
+  parent: system.admin_config_search
+
+# search_tracking.results:
+#   title: "Search Tracking Results"
+#   route_name: search_tracking.searchTracking
+#   description: 'Search tracking results'
+#   parent: search_tracking.configmenu

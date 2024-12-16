@@ -1,0 +1,5 @@
+form-api-data:
+  js:
+    js/formData.js: {}
+  dependencies:
+    - core/drupalSettings

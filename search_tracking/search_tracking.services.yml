@@ -1,0 +1,4 @@
+services:
+  search_tracking.controller:
+    class: 'Drupal\search_tracking\Controller\SearchTrackingController'
+    arguments: ['@database', '@page_cache_kill_switch', '@request_stack', '@datetime.time']

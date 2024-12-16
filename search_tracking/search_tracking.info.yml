@@ -1,0 +1,8 @@
+name: Search Tracking
+description: Provides searched content history with the provided form.
+type: module 
+core_version_requirement: ^8 || ^9 || ^10
+package: Search
+
+libraries:
+  - search_tracking/form-api-data

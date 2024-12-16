@@ -1,0 +1,15 @@
+search_tracking.api:
+  path: '/api/form-data'
+  defaults:
+    _controller: '\Drupal\search_tracking\Controller\SearchTrackingController::formData'
+    _title: 'Search Form API'
+  requirements:
+    _permission: access content
+    
+search_tracking.searchTrackingConfig:
+  path: admin/config/search/search-tracking/form-config
+  defaults:
+    _title: Search Tracking Configuration
+    _form: \Drupal\search_tracking\Form\SearchTrackingConfig
+  requirements:
+    _role: administrator
